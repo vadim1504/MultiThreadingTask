@@ -1,6 +1,6 @@
 totalPassengers=100
 busStop=10
 bus=2
-capacityBus=20
+capacityBus=10
 interval=3000
 speed=0.1

@@ -52,6 +52,7 @@ public class InitForm extends JFrame{
                                 JOptionPane.showMessageDialog(new JFrame(), "Слишком большая скорость передвижения автобусов", "Информация", JOptionPane.INFORMATION_MESSAGE);
                             }
 
+                            initParametrs();
                             MainForm mainForm = new MainForm(publicTransportation);
                             mainForm.setVisible(true);
                             setVisible(false);
@@ -95,5 +96,15 @@ public class InitForm extends JFrame{
         capacityBus.setText(String.valueOf(publicTransportation.capacityBus));
         interval.setText(String.valueOf(publicTransportation.interval));
         speed.setText(String.valueOf(publicTransportation.speed));
+    }
+
+    private void initParametrs(){
+        publicTransportation.nBus=Integer.valueOf(nBus.getText());
+        publicTransportation.nPassengers=Integer.valueOf(nPassengers.getText());
+        publicTransportation.nbusStop=Integer.valueOf(nbusStop.getText());
+        publicTransportation.capacityBus=Integer.valueOf(capacityBus.getText());
+        publicTransportation.interval=Integer.valueOf(interval.getText());
+        publicTransportation.speed=Double.valueOf(speed.getText());
+
     }
 }
