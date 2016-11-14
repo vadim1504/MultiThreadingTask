@@ -43,7 +43,7 @@ public class InitForm extends JFrame{
                                 throw new Exception();
                             }
                             if(Integer.valueOf(interval.getText())<3000){
-                                JOptionPane.showMessageDialog(new JFrame(), "Маленький интервал запуска автобусов (могут возникнуть проблемы) и не корректно отобразиться на GUI", "Информация", JOptionPane.INFORMATION_MESSAGE);
+                                JOptionPane.showMessageDialog(new JFrame(), "Маленький интервал запуска автобусов (могут возникнуть проблемы с работой нескольких автобусов одновременно на одной остановке) и не корректно отобразиться на GUI", "Информация", JOptionPane.INFORMATION_MESSAGE);
                             }
                             if( Double.valueOf(speed.getText())<0.1){
                                 JOptionPane.showMessageDialog(new JFrame(), "Слишком маленькая скорость передвижения автобусов", "Информация", JOptionPane.INFORMATION_MESSAGE);
