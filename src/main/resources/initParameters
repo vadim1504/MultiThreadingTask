@@ -1,6 +1,7 @@
-totalPassengers=100
-busStop=10
+mode=console
+totalPassengers=1000
+busStop=5
 bus=2
 capacityBus=10
-interval=3000
+interval=0
 speed=0.1

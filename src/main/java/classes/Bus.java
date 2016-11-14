@@ -1,5 +1,6 @@
 package classes;
 
+import mode.gui.MainForm;
 import publicTransportation.PublicTransportation;
 
 import java.util.ArrayList;
@@ -39,12 +40,15 @@ public class Bus implements Runnable {
         x=0;
         back();
         logger.log("Автобус " + nomer + " закончил работу!");
-        PublicTransportation.k();
+        PublicTransportation.busWorkingRemove();
     }
 
     public void forward(){
         int i=0;
         while (x<= route+speed) {
+            if(MainForm.exit==1){
+                break;
+            }
             if(i< busStopForward.length) {
                 if (busStopForward[i].getX() <= x) {
                     logger.log("Автобус " + nomer + " привехал на остановку номер: " + busStopForward[i].getNomer() + " едет вперёд. Количество пассажров " + passenger);
@@ -58,6 +62,9 @@ public class Bus implements Runnable {
     public void back(){
         int i=0;
         while (x<= route+speed){
+            if(MainForm.exit==1){
+                break;
+            }
             if(i<busStopBack.length) {
                 if (busStopBack[i].getX() <= x) {
                     logger.log("Автобус " + nomer + " привехал на остановку номер: " + busStopBack[i].getNomer() + " едет назад. Количество пассажров " + passenger);

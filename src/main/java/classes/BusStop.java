@@ -4,8 +4,8 @@ package classes;
 public class BusStop {
 
     private Bus bus;
-    public Object monitor1 = new Object();
-    public Object monitor2 = new Object();
+    public Object passengerOut = new Object();
+    public Object passengerEntered = new Object();
     private int passenger;
     private int nomer;
     private int x;
@@ -20,11 +20,10 @@ public class BusStop {
     public void setBus(Bus bus) {
         this.bus = bus;
 
-
         logger.log(bus.getCheckBusStop(nomer)+" пассажиров на выход с "+bus.getCheckBusStop(nomer)+" на остановке "+nomer);
 
-        synchronized (monitor1) {
-            monitor1.notifyAll();
+        synchronized (passengerOut) {
+            passengerOut.notifyAll();
         }
 
         while (true){
@@ -38,8 +37,8 @@ public class BusStop {
 
             logger.log(passenger+" пассажиров на вход в автобус "+bus.getNomer()+ " на остановке "+nomer);
 
-            synchronized (monitor2) {
-                monitor2.notifyAll();
+            synchronized (passengerEntered) {
+                passengerEntered.notifyAll();
             }
 
             while (true) {

@@ -1,6 +1,7 @@
 package classes;
 
 
+import mode.gui.MainForm;
 import publicTransportation.PublicTransportation;
 
 public class Passenger implements Runnable {
@@ -37,9 +38,12 @@ public class Passenger implements Runnable {
 
     private void go(){
         while (true) {
-            synchronized (busStopStart.monitor2) {
+            if(MainForm.exit==1){
+                break;
+            }
+            synchronized (busStopStart.passengerEntered) {
                 try {
-                    busStopStart.monitor2.wait();
+                    busStopStart.passengerEntered.wait();
                     if(busStopStart.getBus()!=null){
                         int nomerBus = busStopStart.getBus().getNomer();
                         if (busStopStart.getBus().addPassenger(stop, direction)) {
@@ -59,14 +63,17 @@ public class Passenger implements Runnable {
     }
     private void out(){
         while (true) {
-            synchronized (busStopStop.monitor1) {
+            if(MainForm.exit==1){
+                break;
+            }
+            synchronized (busStopStop.passengerOut) {
                 try {
-                    busStopStop.monitor1.wait();
+                    busStopStop.passengerOut.wait();
                     if(busStopStop.getBus()!=null) {
                         if (n == busStopStop.getBus().getNomer()) {
                             logger.log("Пассажир " + nomer + " вышел с автобус " + busStopStop.getBus().getNomer() + " на остановке " + stop);
                             busStopStop.getBus().removePassenger(stop);
-                            PublicTransportation.k1();
+                            PublicTransportation.passengerWorkingRemove();
                             break;
                         }
                     }

@@ -44,9 +44,9 @@ public class GraphicsPanel extends JFrame implements Runnable{
         }
 
         g.setColor(Color.BLUE);
-        g.drawString("Количество не перевезенных пассажиров: "+ PublicTransportation.k1,50,50);
+        g.drawString("Количество не перевезенных пассажиров: "+ PublicTransportation.passengerWorking,50,50);
         g.setColor(Color.RED);
-        g.drawString("Количество автобусов в пути: "+ PublicTransportation.k,50,400);
+        g.drawString("Количество автобусов в пути: "+ PublicTransportation.busWorking,50,400);
 
 
 

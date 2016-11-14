@@ -15,8 +15,8 @@ import java.util.Random;
 public class PublicTransportation {
     private Properties properties=null;
     private InputStream inputStream;
-    public static volatile int k;
-    public static volatile int k1;
+    public static volatile int busWorking;
+    public static volatile int passengerWorking;
     public static int nBus;
     public int nPassengers;
     public static int route = 1000000000;
@@ -47,8 +47,8 @@ public class PublicTransportation {
                 capacityBus=Integer.valueOf(properties.getProperty("capacityBus"));
                 interval=Integer.valueOf(properties.getProperty("interval"));
                 speed=Double.valueOf(properties.getProperty("speed"));
-                k=nBus;
-                k1=nPassengers;
+                busWorking=nBus;
+                passengerWorking=nPassengers;
             } else {
                 throw new FileNotFoundException();
             }
@@ -126,8 +126,8 @@ public class PublicTransportation {
     }
 
     public static void startBus(){
+        busWorking=nBus;
         Thread[] threadsBus = new Thread[nBus];
-        k=nBus;
         for(int i=0;i<threadsBus.length;i++){
             threadsBus[i]=new Thread(buses[i]);
             try {
@@ -140,11 +140,11 @@ public class PublicTransportation {
         }
     }
 
-    public static synchronized void k(){
-        k--;
+    public static synchronized void busWorkingRemove(){
+        busWorking--;
     }
-    public static synchronized void k1(){
-        k1--;
+    public static synchronized void passengerWorkingRemove(){
+        passengerWorking--;
     }
 
 }
