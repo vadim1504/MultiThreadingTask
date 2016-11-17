@@ -1,7 +1,7 @@
-mode=console
-totalPassengers=1000
-busStop=5
+mode=gui
+totalPassengers=100
+busStop=10
 bus=2
 capacityBus=10
-interval=0
+interval=3000
 speed=0.1
